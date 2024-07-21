@@ -180,7 +180,7 @@ class Board:
         pg.draw.rect(
             window,
             color,
-            (cell_y + 1, cell_x + 1, self.cell_width - 2, self.cell_height - 2),
+            (cell_x + 1, cell_y + 1, self.cell_width - 2, self.cell_height - 2),
         )
 
 
@@ -470,15 +470,15 @@ def main_menu():
     w = 200
     h = 40
 
-    input_x1 = InputBox(WIDTH / 4 - 0.5 * w, 0.7 * HEIGHT - 0.5 * h, w, h)
+    input_x1 = InputBox(WIDTH / 4 - 0.5 * w, 0.5 * HEIGHT - 0.5 * h, w, h)
     input_y1 = InputBox(WIDTH / 4 - 0.5 * w, 0.6 * HEIGHT - 0.5 * h, w, h)
-    input_x2 = InputBox(WIDTH / 4 + WIDTH / 2 - 0.5 * w, 0.6 * HEIGHT - 0.5 * h, w, h)
-    input_y2 = InputBox(WIDTH / 4 + WIDTH / 2 - 0.5 * w, 0.7 * HEIGHT - 0.5 * h, w, h)
+    input_x2 = InputBox(WIDTH / 4 + WIDTH / 2 - 0.5 * w, 0.5 * HEIGHT - 0.5 * h, w, h)
+    input_y2 = InputBox(WIDTH / 4 + WIDTH / 2 - 0.5 * w, 0.6 * HEIGHT - 0.5 * h, w, h)
     input_boxes = [input_x1, input_y1, input_x2, input_y2]
 
     dijkstra_button = Button(
         WIDTH / 4 - 0.5 * w,
-        0.4 * HEIGHT - 0.5 * h,
+        0.3 * HEIGHT - 0.5 * h,
         200,
         60,
         "Dijkstra",
@@ -487,7 +487,7 @@ def main_menu():
     )
     astar_button = Button(
         WIDTH / 4 + WIDTH / 2 - 0.5 * w,
-        0.4 * HEIGHT - 0.5 * h,
+        0.3 * HEIGHT - 0.5 * h,
         200,
         60,
         "A*",
@@ -508,7 +508,25 @@ def main_menu():
     while running:
         WINDOW.blit(BACKGROUND, (0, 0))
         title = TITLE_FONT.render("Choose your settings", 1, (255, 255, 255))
-        WINDOW.blit(title, (WIDTH / 2 - title.get_width() / 2, 0.1 * HEIGHT))
+        WINDOW.blit(
+            title,
+            (WIDTH / 2 - title.get_width() / 2, 0.1 * HEIGHT - title.get_height() / 2),
+        )
+
+        start = FONT.render("Start:", 1, (255, 255, 255))
+        destination = FONT.render("Destination:", 1, (255, 255, 255))
+
+        WINDOW.blit(
+            start,
+            (WIDTH / 4 - start.get_width() / 2, 0.4 * HEIGHT - start.get_height() / 2),
+        )
+        WINDOW.blit(
+            destination,
+            (
+                WIDTH / 4 + WIDTH / 2 - destination.get_width() / 2,
+                0.4 * HEIGHT - destination.get_height() / 2,
+            ),
+        )
 
         # done = False
 
